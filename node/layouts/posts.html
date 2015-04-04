@@ -35,7 +35,7 @@
       // the function runs when the "Add Post" button is clicked
       $scope.addPost = function () {
       if ($scope.postBody) {
-        $http.post('/api/posts', {
+        $http.post('http://localhost:3001/api/posts', {
           username: 'dickeyxxx',
           body: $scope.postBody
         }).success(function (post) {
@@ -46,16 +46,10 @@
     }
 
       // starting data
-      $scope.posts = [
-        {
-          username: 'dickeyxxx',
-          body: 'Node rules!'
-        },
-        {
-          username: 'jeffdickey',
-          body: 'trying out angular.js...'
-        }
-      ]
+      $http.get('http://localhost:3001/api/posts')
+.success(function (posts) {
+  $scope.posts = posts
+})
     })
   </script>
 </body>
